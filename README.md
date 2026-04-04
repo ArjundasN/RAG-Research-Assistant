@@ -39,7 +39,7 @@ RAG_capstone/
 ## Setup Instructions
 - Clone the repository
 - Create a .env file to store the Pinecone and Gemini API key
-- download the research papers and store in data/papers
+- download the research papers and store in data/papers using download_papers.py
 - run ingest.py
 - run app.py
 - run UI.py
