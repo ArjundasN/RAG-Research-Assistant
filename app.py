@@ -10,18 +10,16 @@ documents = []
 data_path = "data/papers"
 
 if not os.path.exists(data_path):
-    print("❌ Folder not found:", data_path)
+    print(" Folder not found:", data_path)
 else:
-    print("📄 Loading PDFs...")
+
     for file in os.listdir(data_path):
         if file.endswith(".pdf"):
             loader = PyPDFLoader(os.path.join(data_path, file))
             documents.extend(loader.load())
 
-print(f"✅ Loaded {len(documents)} documents")
 
 
-# IMPORTANT: do NOT initialize RAG here
 rag = None
 
 
@@ -35,7 +33,7 @@ def query():
     global rag
 
     if rag is None:
-        print("⚡ Initializing RAG...")
+        print(" Initializing RAG...")
         rag = RAG(documents)
 
     data = request.json or {}

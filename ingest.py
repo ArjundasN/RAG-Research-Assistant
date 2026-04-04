@@ -4,6 +4,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from pinecone import Pinecone
+from dotenv import load_dotenv
+load_dotenv()
 
 #loading PDF
 documents=[]
@@ -21,7 +23,7 @@ for file in os.listdir("data/papers"):
 print("Total documents loaded:", len(documents))
 
 #text splitting
-text_splitter=RecursiveCharacterTextSplitter(chunk_size=300,chunk_overlap=50)
+text_splitter=RecursiveCharacterTextSplitter(chunk_size=300,chunk_overlap=80)
 chunks=text_splitter.split_documents(documents)
 print("Chunks created:", len(chunks))
 print(chunks[0].page_content[:300])
@@ -29,11 +31,8 @@ print(chunks[0].page_content[:300])
 #embeddings
 embeddings=HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
-os.environ["PINECONE_API_KEY"] ="pcsk_3Wx9JK_PWLMjAKjTjkhTufkn4ecmYDCXYR1X9pN6bSS92zrxgs8ksMkXUsecx6t6pDyiwe"
-
-print("Starting upload to Pinecone...")
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 
 ##store in vectordb
 vectorstore=PineconeVectorStore.from_documents(chunks,embeddings,index_name="rag-ai-papers")
 
-print("upload completed")
