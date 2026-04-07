@@ -51,3 +51,8 @@ RAG_capstone/
 - User query → converted to embedding
 - Relevant chunks retrieved
 - LLM generates final answer
+
+
+## Demonstration
+<img width="1747" height="970" alt="image" src="https://github.com/user-attachments/assets/2d34bfa4-87cf-4bf5-945a-0c990f963dd9" />
+
